@@ -1,0 +1,172 @@
+<html>
+  <style>
+    body {
+      font-family: monospace;
+    }
+    button {
+      border: 0px solid black;
+      background-color: #E8E8E8;
+      width: 80px;
+      height: 20px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <script>
+    window.onload = function(){
+      var verbs = [ 
+        "ser", "ter", "estar", "poder", "fazer", "ir", "haver", "dizer",
+        "dar", "ver", "saber", "querer", "ficar", "dever", "passar", "vir",
+        "chegar", "falar", "deixar", "encontrar", "levar", "começar", "partir", "pensar",
+        "parecer", "apresentar", "olhar", "tornar", "sair", "voltar", "conseguir", "achar",
+        "existir", "sentir", "entrar", "chamar", "conhecer", "considerar", "pôr", "continuar",
+        "viver", "ouvir", "tomar", "acabar", "receber", "perder", "andar", "trabalhar",
+        "criar", "pedir", "seguir", "contar", "acontecer", "afirmar", "tratar", "esperar",
+        "gostar", "usar", "manter", "realizar", "abrir", "escrever", "permitir", "ocorrer",
+        "mostrar", "lembrar", "trazer", "procurar", "morrer", "tentar", "formar", "aparecer",
+        "incluir", "cair", "correr", "ganhar", "surgir", "nascer", "pagar", "representar",
+        "entender", "produzir", "ler", "precisar", "perguntar", "constituir", "colocar", "possuir",
+        "servir", "tirar", "responder", "obter", "desenvolver", "explicar", "descobrir", "acreditar",
+        "levantar", "mandar", "estudar", "atingir", "sofrer", "parar", "bater", "decidir",
+        "referir", "fechar", "aumentar", "acompanhar", "defender", "lançar", "mudar", "resolver",
+        "participar", "subir", "utilizar", "provocar", "compreender", "estabelecer", "pretender", "iniciar",
+        "perceber", "garantir", "comer", "vender", "observar", "comprar", "aceitar", "resultar",
+        "reconhecer", "sentar", "marcar", "construir", "crescer", "publicar", "ajudar", "assumir",
+        "revelar", "prever", "ocupar", "oferecer", "dirigir", "esquecer", "tocar", "envolver",
+        "matar", "fugir", "indicar", "valer", "terminar", "jogar", "conter", "definir",
+        "rir", "escolher", "destacar", "reunir", "descer", "dormir", "causar", "evitar",
+        "determinar", "anunciar", "exigir", "transformar", "vencer", "faltar", "entregar", "casar",
+        "pegar", "eleger", "julgar", "permanecer", "apontar", "virar", "concluir", "significar",
+        "depender", "repetir", "abandonar", "obrigar", "preparar", "aplicar", "reduzir", "pertencer",
+        "funcionar", "retirar", "meter", "verificar", "estender", "acrescentar", "desejar", "dividir",
+        "buscar", "cumprir", "aproximar", "sorrir", "imaginar", "discutir", "apoiar", "gerar",
+        "cantar", "afastar", "admitir", "fixar", "dispor", "chorar", "erguer", "preferir",
+        "aproveitar", "gritar", "promover", "integrar", "atravessar", "alcançar", "propor", "informar",
+        "atribuir", "desaparecer", "aprender", "deitar", "cortar", "enviar", "morar", "acusar",
+        "impedir", "desaparecer", "avançar", "custar", "amar", "interessar", "exercer", "dedicar",
+        "assistir", "cobrir", "compor", "conduzir", "consistir", "substituir", "descrever", "analisar",
+        "confirmar", "completar", "regressar", "bastar", "prometer", "adquirir", "baixar", "conversar",
+        "demonstrar", "contribuir", "corresponder", "importar", "identificar", "jantar", "pesar", "prestar"]
+
+      var nouns = [
+        "o ano", "o dia", "a vez", "a coisa", "o tempo", "o homem", "a casa", "a vida",
+        "a pessoa", "o país", "a forma", "a parte", "o estado", "o governo", "o caso", "o trabalho",
+        "o presidente", "a mulher", "a gente", "a cidade", "o mundo", "a mão", "o público", "a hora",
+        "o lado", "o olho", "o grupo", "a obra", "o senhor", "a terra", "o nome", "o filho",
+        "a relação", "o real", "a noite", "o pai", "o problema", "a empresa", "o direito", "a água",
+        "o processo", "o sistema", "a região", "o ponto", "o fim", "a palavra", "o mês", "a história",
+        "o número", "o fato", "o século", "a área", "o milhão", "o corpo", "o projeto", "a força",
+        "o momento", "a guerra", "o tipo", "o lugar", "a família", "a cabeça", "a ideia", "o valor",
+        "o livro", "a rua", "o serviço", "a tarde", "a ação", "o lei", "a mãe", "o final",
+        "o movimento", "o rio", "o partido", "o local", "a porta", "o deus", "a espécie", "a situação",
+        "a frente", "a câmara", "o mercado", "o acordo", "o branco", "o período", "a morte", "a semana",
+        "o campo", "a questão", "o fundo", "a conta", "a voz", "a informação", "o santo", "o estudo",
+        "a verdade", "a escola", "a criança", "o programa", "o modo", "a arte", "o centro", "o jogo",
+        "a volta", "o dinheiro", "a atividade", "o ministro", "o sul", "o professor", "o utilizado", "a luz",
+        "a medida", "o pé", "o banco", "a condição", "o termo", "a sociedade", "a senhora", "o preço",
+        "a ordem", "a equipe", "o papel", "a produção", "o nível", "o ar", "o plano", "a música",
+        "a causa", "o desenvolvimento", "o produto", "o povo", "a imagem", "o texto", "a população", "o doutor",
+        "o animal", "o objetivo", "a base", "a altura", "o resultado", "o capital", "a época", "o norte",
+        "a costa", "a razão", "o filme", "a cima", "o passo", "o jornal", "a função", "a linha",
+        "o início", "o sentido", "a maneira", "o conto", "o carro", "o caminho", "o autor", "o espaço",
+        "o braço", "o efeito", "a saúde", "o amor", "a estrutura", "a direção", "o futuro", "a figura",
+        "a posição", "o conjunto", "a igreja", "o deputado", "a comissão", "a guarda", "o técnico", "o interesse",
+        "a maioria", "o quarto", "a decisão", "o sol", "a república", "o recurso", "a sala", "a construção",
+        "a universidade", "a filha", "a falta", "o título", "a língua", "o elemento", "a eleição", "a cultura",
+        "o inglés", "o setor", "o líder", "a polícia", "a origem", "o modelo", "o rei", "o teatro",
+        "a zona", "a cara", "a qualidade", "o diretor", "o apoio", "o mar", "o unido", "o princípio",
+        "o material", "a proposta", "a mesa", "a necessidade", "o assunto", "a rede", "a cor", "a reforma",
+        "o membro", "o negócio", "a manhã", "o encontro", "a vontade", "o último", "a fase", "o conhecimento",
+        "a doença", "a carta", "o interior", "a organização", "a segurança", "o candidato", "o conselho", "a ilha",
+        "o ministério", "o contrário", "a união", "a indústria", "a formação", "a televisão", "a associação", "a economia",
+        "a idade", "o padre", "a boca", "o espírito", "a presença", "a alma", "a peça", "a venda",
+        "o uso", "a pena", "a justiça", "a média", "a criação", "a pesquisa", "a caraterística", "a resposta"]
+        .map(function(noun){ return noun.slice(2) });
+
+      bits = [];
+      nounsHtml = document.getElementById("nouns");
+      verbsHtml = document.getElementById("verbs");
+      hexHtml = document.getElementById("hex");
+      bitsHtml = document.getElementById("bits");
+
+      add = function(bit){
+        bits.push(bit);
+        refresh();
+      };
+
+      clr = function(){
+        bits = [];
+        refresh();
+      };
+
+      rnd = function(){
+        var num = new Uint8Array(1);
+        window.crypto.getRandomValues(num);
+        for (var i = 0; i < 8; ++i)
+          bits.push((num >> i) & 1);
+        refresh();
+      };
+
+      chunks = function(n, a){
+        var b = [];
+        for (var i = 0; i < a.length; i += n)
+          b.push(a.slice(i, i+n));
+        return b;
+      };
+
+      table = function(group, line, a){
+        return chunks(group, a).map(function(b){
+          return chunks(line, b).map(function(c){
+            return c.join("");
+          }).join(" ")
+        }).join("<br/>")
+      };
+
+      function pad(chr, n){
+        return function(str){
+          while (str.length < n)
+            str = chr + str;
+          return str;
+        };
+      };
+
+      refresh = function(){
+        var NS = nouns.map(pad(" ", 16));
+        var VS = verbs.map(pad(" ", 16));
+        var hx = chunks(4, bits).map(function(b){ return parseInt(b.join(""), 2).toString(16); });
+        var bs = chunks(8, bits).map(function(b){ return parseInt(b.join(""), 2); }).map(String);
+        var ns = bs.map(function(b){ return NS[b]; });
+        var vs = bs.map(function(b){ return VS[b]; });
+
+        console.log(JSON.stringify(bits.map(String)));
+        console.log(JSON.stringify(hx));
+
+        bitsHtml.innerHTML = table(32, 8, bits.map(String));
+        hexHtml.innerHTML = table(8, 2, hx);
+        nounsHtml.innerHTML = table(4, 1, ns);
+        verbsHtml.innerHTML = table(4, 1, vs);
+      };
+
+    };
+    </script>
+    <p>
+      <button onclick="add(0)">0</button>
+      <button onclick="add(1)">1</button>
+      <button onclick="rnd()">RND</button>
+      <button onclick="clr()">CLR</button>
+    </p>
+
+    <h4>Bits</h4>
+    <p id="bits"></p>
+
+    <h4>Hex: </h4>
+    <p id="hex"></p>
+
+    <h4>Nouns: </h4>
+    <p id="nouns"></p>
+
+    <h4>Verbs: </h4>
+    <p id="verbs"></p>
+
+  </body>
+</html>
